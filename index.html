@@ -45,20 +45,51 @@
       <p class="text-xl text-gray-700 mb-6">
         Trang web của chúng tôi sẽ sớm ra mắt!
       </p>
-
-      <p class="text-lg text-gray-600 mb-8">
-        Chúng tôi đang cố gắng hết sức để mang đến cho bạn trải nghiệm
-        <span class="font-semibold whitespace-nowrap">bánh mì</span> tốt nhất.
-      </p>
-
       <div class="bg-[#965735] p-4 rounded">
-        <p class="text-[#f3f4f6] font-semibold">Liên hệ với chúng tôi:</p>
+        <p class="text-[#f3f4f6] font-semibold">Liên hệ:</p>
         <a
           href="mailto:contact@banhmitantan.com"
           class="text-[#f3f4f6] hover:underline"
           >contact@banhmitantan.com</a
         >
       </div>
+      <p class="text-gray-500 text-sm mt-4">
+        Trang web này đã chạy được <span id="uptime"></span>
+      </p>
     </div>
+    <script>
+      //  the time when the website is first launched
+      //  23/07/2024 10 pm UTC+7 (Vietnam)
+      const START_DATE = new Date("2024-07-23T15:00:00Z");
+      const uptimeElement = document.getElementById("uptime");
+
+      function updateUptime() {
+        const now = new Date();
+        const uptime = now - START_DATE;
+        const days = Math.floor(uptime / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (uptime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((uptime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((uptime % (1000 * 60)) / 1000);
+
+        let uptimeString = "";
+        if (days > 0) {
+          uptimeString += `${days} ngày `;
+        }
+        if (hours > 0) {
+          uptimeString += `${hours} giờ `;
+        }
+        if (minutes > 0) {
+          uptimeString += `${minutes} phút `;
+        }
+        uptimeString += `${seconds} giây`;
+
+        uptimeElement.textContent = uptimeString;
+      }
+
+      document.addEventListener("DOMContentLoaded", updateUptime);
+      setInterval(updateUptime, 1000);
+    </script>
   </body>
 </html>
